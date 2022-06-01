@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/estilos.css">
+    <script src="./scripts/app.js" type="module"></script>
+    <title>Document</title>
+</head>
+<header>
+    <nav>
+
+        <img id="logo" src="./assets/auto.png" alt="Logo empresa">
+        <ul>
+            <li>Nosotros</li>
+            <li id="anuncios">Anuncios</li>
+            <li>Blog</li>
+            <li>Contacto</li>
+        </ul>
+    </nav>
+</header>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <h1>
+                Administracion
+            </h1>
+            <img src="./assets/car.jpg" alt="Auto Banner">
+        </header>
+        <main class="main">
+            <section class="form-container">
+                <h2>Alta Auto</h2>
+                <fieldset>
+                    <legend>Autos</legend>
+                    <form action="" class="form-auto">
+                        <label for="titulo">Titulo:</label>
+                        <input type="text" name="titulo" id="titulo" placeholder="Titulo" autocomplete="off">
+                        <label for="precio">Precio:</label>
+                        <input type="number" name="precio" id="precio" placeholder="Precio" autocomplete="off" min="0">
+                        <label for="descripcion">Descripcion:</label>
+                        <input type="text" name="descripcion" id="descripcion" placeholder="Descripcion" autocomplete="off">
+                        <br>
+                        <fieldset id="fieldTransaccion">
+                            <legend>Transaccion:</legend>
+                            <input type="radio" name="transaccion" id="transaccion" value="venta">VENTA
+                            <br>
+                            <input type="radio" name="transaccion" id="transaccion" value="alquiler">ALQUILER
+                        </fieldset>
+                        <br>
+                        <label for="puertas">Puertas:</label>
+                        <input type="number" name="puertas" id="puertas" placeholder="Puertas" autocomplete="off" min="0" max="5">
+                        <label for="km">KMs:</label>
+                        <input type="number" name="km" id="km" placeholder="KMs" autocomplete="off" min="0">
+                        <label for="potencia">Potencia:</label>
+                        <input type="number" name="potencia" id="potencia" placeholder="Potencia" autocomplete="off" min="0">
+                        <input type="hidden" name="id" value=""/>
+                        <div id="form-buttons">
+                            <input type="submit" id="submit-auto" value="Guardar"/>
+                            <input type="button" id="btnEliminar" value="Eliminar" hidden="true">
+                            <input type="button" id="btnCancelar" value="Cancelar" hidden="true">
+                        </div>
+                            
+                    </form>
+                </fieldset>
+            </section>
+            <section class="table-container"></section>
+        </main>
+    </div>
+</body>
+<footer>
+    <nav>
+        <ul>
+            <li>Cosas</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <p>Derechos reservados</p>
+    </nav>
+</footer>
+</html>

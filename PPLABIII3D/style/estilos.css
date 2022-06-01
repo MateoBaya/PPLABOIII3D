@@ -1,0 +1,142 @@
+*{
+    padding:0px;
+    margin: 0px;
+}
+table{
+    border-collapse:  collapse;
+    width:95%;
+  }
+th,td{
+    border:1px solid violet;
+    padding : 10px;
+}
+.numeroPar{
+    background-color:blueviolet;
+    color:cornsilk;
+}
+.numeroImpar{
+    background-color:brown
+}
+th{
+    font-size: 1rem;
+    background-color: aqua;
+}
+tr.numeroImpar:hover,
+tr.numeroPar:hover{
+    background-color: blue;
+    color:aliceblue;
+}
+.container{
+    padding:70px 0px;
+    margin:0 auto;
+    width: 100%;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.header>img{
+    padding: 10px 0px;
+    width: 100%;
+}
+.form-container{
+    width: 40%;
+    align-self: center;
+    padding: 1%;
+}
+.form-container>fieldset fieldset{
+    border-style: hidden;
+}
+#fieldTransaccion{
+    width:max-content;
+    align-self: center;
+    
+}
+.table-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom:2%;
+}
+.form-auto{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.form-auto input{
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color:lightblue;
+    border-style: hidden;
+}
+#submit-auto,#btnEliminar,#btnCancelar{
+    color:white;
+    border-radius: 5px;
+}
+#submit-auto{
+    background-color:olive;
+}
+#btnEliminar{
+    background-color: red;
+}
+#btnCancelar{
+    background-color:darkslateblue;
+}
+#logo{
+    width: 70px;
+}
+nav{
+    max-height: 50px;
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    
+}
+header>nav{
+    position:fixed;
+    top:0;
+    width:100%;    
+    justify-content: space-around;
+
+}
+footer>nav{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    justify-content: space-between;
+}
+nav p{
+    align-self: center;
+    padding:10px;
+}
+nav>ul{
+    display: flex;
+    text-decoration: none;
+    list-style: none;
+    border: 0px;
+    padding: 10px;
+    height: 100%;
+
+}
+nav>ul>li{
+    padding: 10px;
+    height: 100%;
+}
+nav>ul>li:hover{
+    background-color: antiquewhite;
+}
+body{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+}
