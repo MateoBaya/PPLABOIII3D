@@ -1,6 +1,6 @@
 class Auto{
     constructor(id,titulo,precio,descripcion,transaccion,puertas,km,potencia){
-        this.Id = id;
+        this.id = id;
         this.Titulo = titulo;
         this.Precio = precio;
         this.Descripcion = descripcion;
@@ -10,17 +10,6 @@ class Auto{
         this.potencia = potencia;
     }
 
-    set Id(value)
-    {
-        if((value!=null && value!=undefined && value!=="")&&typeof parseInt(value,10) === "number" && value>0)
-        {
-            this.id=value;
-        }
-        else
-        {
-            throw ("Id incorrecto");
-        }
-    }
     set Titulo(value)
     {
         if((value!=null && value!=undefined&& value!=="")&&typeof value === "string" && value.length<40)

@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConsigueAutos</title>
     <link rel="stylesheet" href="./style/estilos.css">
     <script src="./scripts/app.js" type="module"></script>
     <title>Document</title>
 </head>
+
 <header>
-    <nav>
+    <nav id="headerNav">
 
         <img id="logo" src="./assets/auto.png" alt="Logo empresa">
         <ul>
@@ -20,8 +22,13 @@
         </ul>
     </nav>
 </header>
-<body>
 
+<body>
+    <div class="homeDiv">
+        <div class="cardsContainer"></div>
+        <p>Venta y Alquiler de Vehiculos Exclusivos de Lujo</p>
+        
+    </div>
     <div class="container">
         <header class="header">
             <h1>
@@ -65,17 +72,48 @@
                     </form>
                 </fieldset>
             </section>
+            <div class="table-options">
+                <h2>Filtros</h2>
+                <section class="options">
+                    <div>
+                        <label for="filter">Filtrar por:</label>
+                        <select name="filter" id="filter">
+                            <option value="todos">Todos</option>
+                            <option value="alquiler">Alquiler</option>
+                            <option value="venta">Venta</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="">Promedio de precios</label>
+                        <input type="number" name="promedio" id="promedio" placeholder="N/A">
+                    </div>
+                    <div>
+                        <label>Campos mostrados</label>
+                        <fieldset>
+                            <legend>Seleccione campos a mostrar</legend>
+                            <input type="checkbox" name="titulo" id="tituloC" checked value="titulo">Titulo
+                            <input type="checkbox" name="precio" id="precioC" checked value="precio">Precio
+                            <input type="checkbox" name="descripcion" id="descripcionC" checked value="descripcion">Descripcion
+                            <input type="checkbox" name="transaccion" id="transaccionC" checked value="transaccion">Transaccion
+                            <input type="checkbox" name="puertas" id="puertasC" checked value="puertas">Puertas
+                            <input type="checkbox" name="km" id="kmC" checked value="km">Kilometros
+                            <input type="checkbox" name="potencia" id="potenciaC" checked value="potencia">Potencia
+                            
+                        </fieldset>
+                    </div>
+                </section>
+            </div>
             <section class="table-container"></section>
         </main>
     </div>
 </body>
 <footer>
-    <nav>
+    <nav id="footerNav">
         <ul>
-            <li>Cosas</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
+            <li>Nosotros</li>
+            <li>Anuncios</li>
+            <li>Blog</li>
+            <li>Contacto</li>
         </ul>
         <p>Derechos reservados</p>
     </nav>

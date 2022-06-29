@@ -1,4 +1,5 @@
 import { TableGenerator } from "./tableGenerator.js";
+import { CardsGenerator } from "./cardsGenerator.js";
 import Auto from "./auto.js";
 const table = document.querySelector(".table-container");
 const autosBackup = localStorage.getItem("autos")?JSON.parse(localStorage.getItem("autos")):[];
@@ -6,11 +7,21 @@ let autos = autosBackup;
 const formAuto = document.querySelector(".form-auto");
 const btnEliminar = document.getElementById("btnEliminar");
 const btnCancelar = document.getElementById("btnCancelar");
-const img = document.getElementById("logo");
+const logo = document.getElementById("logo");
 const body = document.querySelector("body");
 const container=document.querySelector(".container");
+const footer = document.querySelector("footer");
+const navAnuncios = document.getElementById("anuncios");
+const headerNav = document.getElementById("headerNav");
+const footerNav = document.getElementById("footerNav");
+const homeDiv = document.querySelector(".homeDiv");
+const cardsContainer=document.querySelector(".cardsContainer");
+footerNav.setAttribute("style","background-color: aqua");
 body.removeChild(container);
-actualizarTabla(autos);
+actualizarCards(autos);
+//actualizarTabla(autos);
+//console.log(autos);
+home();
 // SUBMIT CAMBIADO
 formAuto.addEventListener("submit",(e)=>{
     e.preventDefault();
@@ -52,7 +63,7 @@ formAuto.addEventListener("submit",(e)=>{
     formAuto.puertas.value="";
     formAuto.km.value="";
     formAuto.potencia.value="";
-    actualizarTabla(autos);
+    actualizarTabla(filtrado());
 });
 
 function modifyRow(row,values)
@@ -104,7 +115,15 @@ btnEliminar.addEventListener("click",(e)=>{
     let row = searchRow(formAuto.id.value);
     row.parentElement.removeChild(row);
     saveToLocalStorage();
-    actualizarTabla(autos);
+    actualizarTabla(filtrado());
+    formAuto.titulo.value="";
+    formAuto.precio.value="";
+    formAuto.descripcion.value="";
+    formAuto.transaccion.value="";
+    formAuto.id.value="";
+    formAuto.puertas.value="";
+    formAuto.km.value="";
+    formAuto.potencia.value="";
 });
 
 // BOTON CANCELAR CLICK
@@ -122,21 +141,42 @@ btnCancelar.addEventListener("click",(e)=>{
 
 });
 
-const navAnuncios = document.getElementById("anuncios");
 // NAV ANUNCIOS
 navAnuncios.addEventListener("click",(e)=>{
+    exitHome();
     body.appendChild(container);
-    actualizarTabla(autos);
+    actualizarTabla(filtrado());
     body.setAttribute("background-image","none");
+
 });
 
 // LOGO
-img.addEventListener("click",(e)=>{
-    body.removeChild(container);
-    body.setAttribute("background-image","url('../assets/cars.jpg')");
-
+logo.addEventListener("click",(e)=>{
+    if(body.contains(container))
+    {
+        body.removeChild(container);
+    }
+    home();
 })
 ;
+
+window.addEventListener("resize",(e)=>{
+    const html = document.querySelector("html");
+    const cards =  document.querySelector(".cards");
+    if(body.contains(homeDiv))
+    {
+        if(window.matchMedia("(min-width: 768px)").matches)
+        {
+            html.setAttribute("style","background-image: url(./assets/cars.jpg); background-size: cover; background-repeat: no-repeat");
+            cards.setAttribute("style","flex-direction:row");
+        }
+        else
+        {
+            html.setAttribute("style","background-image: url(./assets/carsVertical.jpg); background-size: cover; background-repeat: no-repeat");
+            cards.setAttribute("style","flex-direction:column");
+        }
+    }
+});
 
 // RECREA LA TABLA CON LOS CONTENIDOS EN LISTA
 function actualizarTabla(lista)
@@ -153,9 +193,8 @@ function actualizarTabla(lista)
         {
             container.appendChild(createSpinner());
             let generacionTabla = setTimeout(() => {
-                
                 container.appendChild(TableGenerator(lista));
-            }, 1000);
+            }, 3000);
             deleteSpinner(container);
         }
         catch(e)
@@ -164,13 +203,72 @@ function actualizarTabla(lista)
         }
     }
 }
+
+function actualizarCards(lista)
+{
+    if(homeDiv.contains(cardsContainer))
+    {
+        while(cardsContainer.children.length>0)
+        {
+            cardsContainer.removeChild(cardsContainer.firstElementChild);
+        }
+        try
+        {
+            cardsContainer.appendChild(CardsGenerator(lista));
+        }
+        catch(e)
+        {
+            console.log("No tiene datos en LocalStorage");
+        }
+    }
+}
+
+// CAMBIA FONDO A AUTOS
+function home()
+{
+    const html = document.querySelector("html");
+    footer.hidden=true;
+    if(window.matchMedia("(min-width: 768px)").matches)
+    {
+        html.setAttribute("style","background-image: url(./assets/cars.jpg); background-size: inherit; background-repeat: no-repeat");
+    }
+    else
+    {
+        html.setAttribute("style","background-image: url(./assets/carsVertical.jpg); background-size: cover; background-repeat: no-repeat");
+    }
+    headerNav.setAttribute("style","background-color: transparent");
+    if(!body.contains(homeDiv))
+    {
+        body.appendChild(homeDiv);
+        homeDiv.appendChild(cardsContainer);
+        actualizarCards(autos);
+    }
+}
+
+function exitHome()
+{
+    const html = document.querySelector("html");
+    html.setAttribute("style","background-image: none");
+    footer.hidden=false;
+    headerNav.setAttribute("style","background-color: aqua");
+    if(body.contains(homeDiv))
+    {
+        body.removeChild(homeDiv);
+    }
+
+}
+
 async function deleteSpinner(container)
 {
+    const divSpinner = document.getElementById("divSpinner");
     if(body.contains(container))
     {
         setTimeout(() => {
-            container.removeChild(document.getElementById("divSpinner"));
-        }, 1000);
+            if(container.contains(divSpinner))
+            {
+                container.removeChild(divSpinner);
+            }
+        }, 3000);
     }
 
 }
@@ -241,4 +339,82 @@ function readAllRows()
         row = row.nextElementSibling;
     }
     return array;
+}
+
+function filtrado()
+{
+    const filter = document.getElementById("filter");
+    const promedio = document.getElementById("promedio");
+    const titulo=document.getElementById("tituloC");
+    const precio=document.getElementById("precioC");
+    const descripcion=document.getElementById("descripcionC");
+    const transaccion=document.getElementById("transaccionC");
+    const puertas=document.getElementById("puertasC");
+    const km=document.getElementById("kmC");
+    const potencia=document.getElementById("potenciaC");
+    const array = [titulo,precio,descripcion,transaccion,puertas,km,potencia];
+    let tablaFiltrada;
+    let arrayfilters = new Array();
+    array.forEach(element => {
+        if(element.checked)
+        {
+            arrayfilters.push(element.value);
+        }
+    });
+    
+    if(filter.value!="todos")
+    {
+        tablaFiltrada=filtrarTabla(filtrarAutos(autos,filter.value),arrayfilters);
+        console.log(tablaFiltrada);
+        if(tablaFiltrada.length>0)
+        {
+            promedio.value=promediarPrecioAutos(tablaFiltrada);
+        }
+    }
+    else
+    {
+        tablaFiltrada=filtrarTabla(autos,arrayfilters);
+        promedio.value="";
+    }
+
+    return tablaFiltrada;
+}
+
+function filtrarTabla(lista,filterElements)
+{
+    const tablaFiltrada = lista.map(function(element){
+        let obj = {};
+        filterElements.forEach((filter,i) => {
+            obj[filterElements[i]]=element[filter];
+        });
+        return obj;
+        console.log(array);
+    });
+    return tablaFiltrada;
+}
+
+function filtrarAutos(lista,transaccion)
+{
+    if(transaccion!="todos")
+    {
+        const listaFiltrada = autos.filter(function(element){
+            return element["transaccion"]==transaccion;
+        });
+        return listaFiltrada;
+    }
+    else
+    {
+        return null;
+    }
+}
+
+function promediarPrecioAutos(lista)
+{
+    const listaPrecios = lista.map(function(element){
+        return parseInt(element["precio"]);
+    });
+    const average = listaPrecios.reduce(function(sum,value){
+        return sum+value;
+    })/listaPrecios.length;
+    return average;
 }

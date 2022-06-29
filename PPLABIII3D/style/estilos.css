@@ -26,15 +26,32 @@ tr.numeroPar:hover{
     background-color: blue;
     color:aliceblue;
 }
+figure{
+    background-color: rgba(192, 190, 209,0.75);
+    margin: 20px;
+    display: flex;
+    flex-direction:column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-style:solid;
+}
+.card>p,.card>label{
+    border-collapse: collapse;
+    border: 10px;
+    padding:2px;
+}
+.cards{
+    display: flex;
+    flex-direction:row;
+}
 .container{
     padding:70px 0px;
     margin:0 auto;
     width: 100%;
 }
+
 .main{
     display: flex;
     flex-direction: column;
-    
 }
 
 .header{
@@ -60,6 +77,29 @@ tr.numeroPar:hover{
     align-self: center;
     
 }
+.table-options{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(255, 0, 64);
+    height: 20vh;
+    text-align: center;
+}   
+.options{
+    display: flex;
+    justify-content:flex-start;
+}
+.options select, input
+{
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color:lightblue;
+    border-style: hidden;
+}
+.options>div{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
 .table-container{
     width: 100%;
     display: flex;
@@ -77,6 +117,18 @@ tr.numeroPar:hover{
     border-radius: 10px;
     background-color:lightblue;
     border-style: hidden;
+}
+.homeDiv{
+    display: flex;
+    padding-top: 70px;
+}
+.homeDiv>p{
+    color:white;
+    font-size: 5vh;
+    position:fixed;
+    bottom: 0px;
+    padding: 2rem;
+    max-width: 40vw;
 }
 #submit-auto,#btnEliminar,#btnCancelar{
     color:white;
@@ -96,27 +148,24 @@ tr.numeroPar:hover{
 }
 nav{
     max-height: 50px;
-    background-color: aqua;
     display: flex;
     align-items: center;
-    
 }
-header>nav{
+header>nav, footer>nav{
     position:fixed;
-    top:0;
     width:100%;    
     justify-content: space-around;
-
+}
+header>nav{
+    top:0;
 }
 footer>nav{
-    position:fixed;
     bottom:0;
-    width:100%;
-    justify-content: space-between;
 }
 nav p{
     align-self: center;
     padding:10px;
+    color:white;
 }
 nav>ul{
     display: flex;
@@ -130,13 +179,16 @@ nav>ul{
 nav>ul>li{
     padding: 10px;
     height: 100%;
+    color:white;
 }
 nav>ul>li:hover{
     background-color: antiquewhite;
+    color: black;
 }
 body{
-    background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-
+}
+html{
+    background: center fixed;
 }
